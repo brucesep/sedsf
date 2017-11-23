@@ -10,8 +10,10 @@ import org.openqa.selenium.By;
 import org.testng.annotations.*;
 
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
+import static org.openqa.selenium.By.tagName;
 
 
 public class Mailing {
@@ -34,6 +36,7 @@ public class Mailing {
         $(By.xpath("//a[span='УПД (ИНФОРМАЦИЯ ПРОДАВЦА)']")).click();
         $(new Selectors.ByText("Новый документ: УПД (ИНФОРМАЦИЯ ПРОДАВЦА)")).isDisplayed();
         $(".x-form-trigger.x-form-arrow-trigger.arrow-n-combo-invalid").click();
+        $(new Selectors.ByText("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость")).click();
 
     }
 
