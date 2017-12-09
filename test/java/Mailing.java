@@ -1,19 +1,9 @@
-import com.codeborne.selenide.Condition;
+
 import com.codeborne.selenide.Configuration;
-
-import com.codeborne.selenide.Selectors;
-import com.codeborne.selenide.SelenideElement;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-import net.bytebuddy.asm.Advice;
-import org.openqa.selenium.By;
-
 import org.testng.annotations.*;
-
-
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
-import static org.openqa.selenium.By.tagName;
+import pageObj.PageObjectMain;
+import pageObj.PageObjectUpd;
+import pageObj.helpMeth;
 
 
 public class Mailing {
@@ -30,14 +20,70 @@ public class Mailing {
     }
 
     @Test
-    public void createUPD() {
-
-        $(new Selectors.ByText("Новый документ")).click();
-        $(By.xpath("//a[span='УПД (ИНФОРМАЦИЯ ПРОДАВЦА)']")).click();
-        $(new Selectors.ByText("Новый документ: УПД (ИНФОРМАЦИЯ ПРОДАВЦА)")).isDisplayed();
-        $(".x-form-trigger.x-form-arrow-trigger.arrow-n-combo-invalid").click();
-        $(new Selectors.ByText("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость")).click();
-
+    public void createUpdScfMin() {
+        PageObjectMain.newFormOpen("УПД");
+        PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость");
+        PageObjectUpd.fillSchfMinimum("АВТО СЧФ 1000/", 0);
+        PageObjectUpd.podpisant();
+        PageObjectUpd.fillTable();
+        //PageObjectMain.savingDoc();
+        PageObjectMain.sendingDoc();
+    }
+    @Test(enabled = false)
+    public void createUpdSchfMax() {
+        PageObjectMain.newFormOpen("УПД");
+        PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость");
+        PageObjectUpd.fillSchfMinimum("АВТО СЧФ 1000/", 0);
+        PageObjectUpd.fillAnotherPoles();
+        PageObjectUpd.podpisant();
+        PageObjectUpd.fillTableFull();
+        //PageObjectMain.savingDoc();
+        PageObjectMain.sendingDoc();
     }
 
+    @Test(enabled = false)
+    public void createSchfDopMin() {
+        PageObjectMain.newFormOpen("УПД");
+        PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость, и документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)");
+        PageObjectUpd.fillSchfMinimum("АВТО СЧФДОП 2000/", 1);
+        PageObjectUpd.podpisant();
+        PageObjectUpd.fillTable();
+        //PageObjectMain.savingDoc();
+        PageObjectMain.sendingDoc();
+    }
+
+    @Test(enabled = false)
+    public void createSchfDopMax(){
+        PageObjectMain.newFormOpen("УПД");
+        PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость, и документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)");
+        PageObjectUpd.fillSchfMinimum("АВТО СЧФДОП 2000/", 1);
+        PageObjectUpd.fillAnotherPoles();
+        PageObjectUpd.podpisant();
+        PageObjectUpd.fillTableFull();
+        //PageObjectMain.savingDoc();
+        PageObjectMain.sendingDoc();
+    }
+
+    @Test(enabled = false)
+    public void createDisMin() {
+        PageObjectMain.newFormOpen("УПД");
+        PageObjectUpd.chooseFunction("документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)");
+        PageObjectUpd.fillSchfMinimum("АВТО ДИС 3000/", 1);
+        PageObjectUpd.podpisant();
+        PageObjectUpd.fillTable();
+        //PageObjectMain.savingDoc();
+        PageObjectMain.sendingDoc();
+    }
+    @Test(enabled = false)
+    public void createDisMax(){
+        PageObjectMain.newFormOpen("УПД");
+        PageObjectUpd.chooseFunction("документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)");
+        PageObjectUpd.fillSchfMinimum("АВТО ДИС 3000/", 1);
+        PageObjectUpd.fillAnotherPoles();
+        PageObjectUpd.podpisant();
+        PageObjectUpd.fillTableFull();
+        //PageObjectMain.savingDoc();
+        PageObjectMain.sendingDoc();
+    }
 }
+
