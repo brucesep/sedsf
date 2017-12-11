@@ -34,8 +34,8 @@ public class Mailing {
         PageObjectMain.newFormOpen("УПД");
         PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость");
         PageObjectUpd.fillSchfMinimum("АВТО СЧФ 1000/", 0);
-        PageObjectUpd.fillAnotherPoles();
         PageObjectUpd.podpisant();
+        PageObjectUpd.fillAnotherPoles();
         PageObjectUpd.fillTableFull();
         //PageObjectMain.savingDoc();
         PageObjectMain.sendingDoc();
@@ -57,9 +57,10 @@ public class Mailing {
         PageObjectMain.newFormOpen("УПД");
         PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость, и документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)");
         PageObjectUpd.fillSchfMinimum("АВТО СЧФДОП 2000/", 1);
+        PageObjectUpd.podpisant();
         PageObjectUpd.fillAnotherPoles();
         PageObjectUpd.podpisant();
-        PageObjectUpd.fillTableFull();
+        //PageObjectUpd.fillTableFull();
         //PageObjectMain.savingDoc();
         PageObjectMain.sendingDoc();
     }
@@ -79,9 +80,10 @@ public class Mailing {
         PageObjectMain.newFormOpen("УПД");
         PageObjectUpd.chooseFunction("документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)");
         PageObjectUpd.fillSchfMinimum("АВТО ДИС 3000/", 1);
+        PageObjectUpd.podpisant();
         PageObjectUpd.fillAnotherPoles();
         PageObjectUpd.podpisant();
-        PageObjectUpd.fillTableFull();
+        //PageObjectUpd.fillTableFull();
         //PageObjectMain.savingDoc();
         PageObjectMain.sendingDoc();
     }

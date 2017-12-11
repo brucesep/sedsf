@@ -148,11 +148,11 @@ public class PageObjectUpd {
         mainTable.doubleClick();
         autoCount.click();
         $$(upDownMenuClick).get(7).click();
-        $$(upDownMenuElement).get(2).$$(By.cssSelector("div")).get(26).click();
+        $$(upDownMenuElement).get(3).$$(By.cssSelector("div")).get(26).click();
         edinicaHand.click();
         edinicaHand.setValue("АВТО установлено вручную");
-        $$(upDownMenuClick).get(8).click();
-        $$(upDownMenuElement).get(3).$$(By.cssSelector("div")).get(0).click();
+        $$(upDownMenuClick).get(6).click();
+        $$(upDownMenuElement).get(4).$$(By.cssSelector("div")).get(0).click();
         priznakDopInfo.setValue("1010");
         charaterCodeArticul.setValue("АВТО характеристика/код");
         productName.setValue("АВТО. Наименование продукта.");
@@ -173,7 +173,8 @@ public class PageObjectUpd {
         $(new Selectors.ByText("643 РОССИЯ")).click();
         Configuration.fastSetValue = true;
         $(".x-grid3-cell-inner.x-grid3-col-numberTamozhDeclaration.x-unselectable").doubleClick();
-        $$(".x-form-text.x-form-field").get(7).setValue("АВТО РНТД");
+        //$$(".x-form-text.x-form-field").get(8).setValue("АВТО РНТД");
+        $(".x-form-text.x-form-field.x-form-focus").setValue("АВТО РНТД");
         $$(unselectIdentif).get(2).click();
         $$(unselectIdentif).get(2).click();
         $(".x-form-text.x-form-field.x-form-focus").setValue("АВТО идентиф ФХЖ2");
@@ -194,9 +195,10 @@ public class PageObjectUpd {
         countProduct.click();
         savingCargo.click();
     }
-    public static void fillSchfMinimum(String nomer, int val) {
+    public static String fillSchfMinimum(String nomer, int val) {
         osnEconSub.setValue("АВТО ПРОВЕРКА основания составителя");
-        documNumb.setValue(nomer + " " + helpMeth.randomCount());
+        String nomerDocuma = nomer + " " + helpMeth.randomCount();
+        documNumb.setValue(nomerDocuma);
         selectOnZhe.click();
         $$(chooseMassive).get(0).click();
         waitingTablePoluch.isDisplayed();
@@ -207,6 +209,7 @@ public class PageObjectUpd {
         if (val != 0){
             soderzhOperation.setValue("АВТО Содержание операции");
         }
+        return nomerDocuma;
     }
     public static void podpisant(){
         $$(plusSymbol).get(6).click();

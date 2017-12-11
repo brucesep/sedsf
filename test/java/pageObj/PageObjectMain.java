@@ -33,7 +33,8 @@ public class PageObjectMain {
         sendDoc.click();
         sendRepeat.isDisplayed();
         sendRepeat.click();
-        sendingStatus.waitUntil(Condition.appear, 10000);
+        sendingStatus.waitUntil(Condition.enabled, 100000);
+        //sendingStatus.waitUntil(Condition.appear, 10000);
         closeSending.click();
         closeSending.waitUntil(Condition.disappear, 10000);
     }

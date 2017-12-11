@@ -19,14 +19,17 @@ public class helpMeth {
         $(By.id("loginBtn")).click();
         //на случай, если не было корректного разлогина
         if ($(By.id("pushOutMessage")).isDisplayed()) {
-            $(By.name("pushOutMessage")).setValue("Sorry! Automation is trying to work around here!");
+            $(By.name("pushOutMessage")).setValue("Sorry! Automation is trying to work around here! Next logins used in process: GreyKnights, Ultramar.");
             $(By.id("loginBtn")).click();
         }
-        $(By.id("comboSelectorId")).should(Condition.visible).click();
-        $(new Selectors.ByText("5003106773 Тестов Тест Тестович")).click();
-        //$$(".x-combo-list-inner").get(1).click();
-        $(new Selectors.ByText("Выбрать")).click();
-
+        //если несколько сертов
+        $(new Selectors.ByText("Сертификат:")).waitUntil(Condition.appear, 3000);
+        if ($(new Selectors.ByText("Сертификат:")).isDisplayed()) {
+            $(By.id("comboSelectorId")).should(Condition.visible).click();
+            $(new Selectors.ByText("5003106773 Тестов Тест Тестович")).click();
+            //$$(".x-combo-list-inner").get(1).click();
+            $(new Selectors.ByText("Выбрать")).click();
+        }
     }
 
     public static void logOut() {
