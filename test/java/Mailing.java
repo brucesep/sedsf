@@ -19,7 +19,7 @@ public class Mailing {
         helpMeth.logOut();
     }
 
-    @Test
+    @Test(enabled = true)
     public void createUpdScfMin() {
         PageObjectMain.newFormOpen("УПД");
         PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость");
@@ -28,7 +28,11 @@ public class Mailing {
         PageObjectUpd.fillTable();
         //PageObjectMain.savingDoc();
         PageObjectMain.sendingDoc();
+        String docNumer = "СЧФ (информация продавца) №" + PageObjectUpd.nomerDocuma + " от 12-12-2017";
+        PageObjectMain.sendQvitSchf(docNumer);
+        helpMeth.logOut();
     }
+
     @Test(enabled = false)
     public void createUpdSchfMax() {
         PageObjectMain.newFormOpen("УПД");

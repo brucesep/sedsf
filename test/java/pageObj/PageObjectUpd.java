@@ -75,6 +75,8 @@ public class PageObjectUpd {
     static ElementsCollection dateDate = $$(".x-date-active.x-date-today.x-date-selected");
     static ElementsCollection unselectIdentif = $$(".x-grid3-cell-inner.x-grid3-col-CODE.x-unselectable");
 
+    public static String nomerDocuma;
+
 
     //пошли методы для заполнения полей.
     public static void fillAnotherPoles() {
@@ -197,7 +199,7 @@ public class PageObjectUpd {
     }
     public static String fillSchfMinimum(String nomer, int val) {
         osnEconSub.setValue("АВТО ПРОВЕРКА основания составителя");
-        String nomerDocuma = nomer + " " + helpMeth.randomCount();
+        nomerDocuma = nomer + " " + helpMeth.randomCount();
         documNumb.setValue(nomerDocuma);
         selectOnZhe.click();
         $$(chooseMassive).get(0).click();

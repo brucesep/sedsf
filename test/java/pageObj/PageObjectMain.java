@@ -1,7 +1,10 @@
 package pageObj;
 
 import com.codeborne.selenide.*;
+import com.codeborne.selenide.conditions.Text;
+import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 /**
@@ -19,7 +22,26 @@ public class PageObjectMain {
     static SelenideElement sendRepeat = $(new Selectors.ByText("Подписать и Отправить"));
     static SelenideElement closeSending = $(new Selectors.ByText("Закрыть"));
     static SelenideElement sendingStatus = $(new Selectors.ByText("обработка завершена"));
+    static SelenideElement kvitantions = $(new Selectors.ByText("Квитанции"));
+    static SelenideElement exitKvitWatch = $(new Selectors.ByText("Закрыть"));
+    static ElementsCollection listKvitations = $$(".x-panel-body.x-panel-body-noborder");
 
+    public static void sendQvitSchf(String mainLink) {
+        //$(new Selectors.ByText("Отправленные")).click();
+        $("table.x-grid3-row-table").find(byText(mainLink)).click();
+        quitationCheck(1);
+        $("table.x-grid3-row-table").find(byText(mainLink)).closest("tr").find(byText("Отправить извещение о получении")).click();
+        $(new Selectors.ByText("Подписать и отправить...")).click();
+        $(new Selectors.ByText("Отмена")).waitUntil(Condition.disappear, 10000);
+        $("table.x-grid3-row-table").find(byText(mainLink)).click();
+        quitationCheck(3);
+    }
+    public static void  quitationCheck(int numQ) {
+        kvitantions.click();
+        $(".x-btn-text.silk-disk").waitUntil(Condition.enabled, 10000);
+        $$(listKvitations).last().$$(By.xpath(".//div//table")).shouldHaveSize(numQ);
+        exitKvitWatch.click();
+    }
     public static void newFormOpen (String docName) {
         newDoc.click();
         $$(docList).findBy(Condition.text(docName)).click();
@@ -38,4 +60,4 @@ public class PageObjectMain {
         closeSending.click();
         closeSending.waitUntil(Condition.disappear, 10000);
     }
-}
+  }
