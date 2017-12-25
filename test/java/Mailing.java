@@ -5,13 +5,17 @@ import pageObj.PageObjectMain;
 import pageObj.PageObjectUpd;
 import pageObj.helpMeth;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class Mailing {
 
     @BeforeTest
     public void setupTest() {
         Configuration.fastSetValue = true;
-        helpMeth.logOn("http://sf2abukk.comita.lan:8080/ccwe/", "GreyKnights", "gfhjkmnhb");
+        helpMeth.logOn(2, "http://sf2abukk.comita.lan:8080/ccwe/", "GreyKnights", "gfhjkmnhb");
+        //helpMeth.logOn(1, "http://sf2abukk.comita.lan:8080/ccwe/", "Ultramar", "gfhjkmnhb");
     }
 
     @AfterTest
@@ -28,9 +32,30 @@ public class Mailing {
         PageObjectUpd.fillTable();
         //PageObjectMain.savingDoc();
         PageObjectMain.sendingDoc();
-        String docNumer = "СЧФ (информация продавца) №" + PageObjectUpd.nomerDocuma + " от 12-12-2017";
+        SimpleDateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
+        String docNumer = "СЧФ (информация продавца) №" + PageObjectUpd.nomerDocuma + " от " + dF.format(new Date());
+        //проверка квитанций у отправителя
         PageObjectMain.sendQvitSchf(docNumer);
         helpMeth.logOut();
+        helpMeth.logOn(1, "http://sf2abukk.comita.lan:8080/ccwe/", "Ultramar", "gfhjkmnhb");
+        //проверка квитанций у получателя
+        PageObjectMain.poluchQuitWork(docNumer);
+        helpMeth.logOut();
+        helpMeth.logOn(2, "http://sf2abukk.comita.lan:8080/ccwe/", "GreyKnights", "gfhjkmnhb");
+        //последняя проверка квитанций
+        PageObjectMain.lastQuit(docNumer);
+        helpMeth.logOut();
+        //сюда засунем создание уточнялки
+        helpMeth.logOn(1, "http://sf2abukk.comita.lan:8080/ccwe/", "Ultramar", "gfhjkmnhb");
+        PageObjectMain.utochZ(docNumer);
+        helpMeth.logOut();
+        helpMeth.logOn(2, "http://sf2abukk.comita.lan:8080/ccwe/", "GreyKnights", "gfhjkmnhb");
+        PageObjectMain.utochSend(docNumer);
+
+    }
+    @Test(enabled = false)
+    public void helping() {
+        PageObjectMain.poluchQuitWork("СЧФ (информация продавца) №АВТО СЧФ 1000/ 832 от 14-12-2017");
     }
 
     @Test(enabled = false)

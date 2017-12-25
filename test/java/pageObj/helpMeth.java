@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selectors;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 
 /**
@@ -12,7 +13,7 @@ import static com.codeborne.selenide.Selenide.open;
  */
 public class helpMeth {
 
-    public static void logOn(String link, String login, String pass) {
+    public static void logOn(int num, String link, String login, String pass) {
         open(link);
         $(By.id("login")).setValue(login);
         $(By.id("password")).setValue(pass);
@@ -23,9 +24,8 @@ public class helpMeth {
             $(By.id("loginBtn")).click();
         }
         //если несколько сертов
-        $(new Selectors.ByText("Сертификат:")).waitUntil(Condition.appear, 3000);
-        if ($(new Selectors.ByText("Сертификат:")).isDisplayed()) {
-            $(By.id("comboSelectorId")).should(Condition.visible).click();
+        if (num != 1) {
+            $(By.id("comboSelectorId")).click();
             $(new Selectors.ByText("5003106773 Тестов Тест Тестович")).click();
             //$$(".x-combo-list-inner").get(1).click();
             $(new Selectors.ByText("Выбрать")).click();
