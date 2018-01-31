@@ -23,9 +23,9 @@ public class Mailing {
         helpMeth.logOut();
     }
 
-    @Test(enabled = true)
+    @Test(groups = {"littleone"}, enabled = true)
     public void createUpdScfMin() {
-        PageObjectMain.newFormOpen("УПД");
+        PageObjectMain.newFormOpen("Счет-фактура и\\или документ об отгрузке товаров (выполнении работ)");
         PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость");
         PageObjectUpd.fillSchfMinimum("АВТО СЧФ 1000/", 0);
         PageObjectUpd.podpisant();
@@ -33,7 +33,7 @@ public class Mailing {
         //PageObjectMain.savingDoc();
         PageObjectMain.sendingDoc();
         SimpleDateFormat dF = new SimpleDateFormat("dd-MM-yyyy");
-        String docNumer = "СЧФ (информация продавца) №" + PageObjectUpd.nomerDocuma + " от " + dF.format(new Date());
+        String docNumer = "Счет-фактура №" + PageObjectUpd.nomerDocuma + " от " + dF.format(new Date());
         //проверка квитанций у отправителя
         PageObjectMain.sendQvitSchf(docNumer);
         helpMeth.logOut();
@@ -53,14 +53,14 @@ public class Mailing {
         PageObjectMain.utochSend(docNumer);
 
     }
-    @Test(enabled = false)
+    @Test(groups = {"test_check"}, enabled = false)
     public void helping() {
         PageObjectMain.poluchQuitWork("СЧФ (информация продавца) №АВТО СЧФ 1000/ 832 от 14-12-2017");
     }
 
-    @Test(enabled = false)
+    @Test(groups = {"FullFill"}, enabled = false)
     public void createUpdSchfMax() {
-        PageObjectMain.newFormOpen("УПД");
+        PageObjectMain.newFormOpen("Счет-фактура и\\или документ об отгрузке товаров (выполнении работ)");
         PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость");
         PageObjectUpd.fillSchfMinimum("АВТО СЧФ 1000/", 0);
         PageObjectUpd.podpisant();
@@ -70,9 +70,9 @@ public class Mailing {
         PageObjectMain.sendingDoc();
     }
 
-    @Test(enabled = false)
+    @Test(groups = {"MinFill"}, enabled = false)
     public void createSchfDopMin() {
-        PageObjectMain.newFormOpen("УПД");
+        PageObjectMain.newFormOpen("Счет-фактура и\\или документ об отгрузке товаров (выполнении работ)");
         PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость, и документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)");
         PageObjectUpd.fillSchfMinimum("АВТО СЧФДОП 2000/", 1);
         PageObjectUpd.podpisant();
@@ -81,9 +81,9 @@ public class Mailing {
         PageObjectMain.sendingDoc();
     }
 
-    @Test(enabled = false)
+    @Test(groups = {"FullFill"}, enabled = false)
     public void createSchfDopMax(){
-        PageObjectMain.newFormOpen("УПД");
+        PageObjectMain.newFormOpen("Счет-фактура и\\или документ об отгрузке товаров (выполнении работ)");
         PageObjectUpd.chooseFunction("счет-фактура, применяемый при расчетах по налогу на добавленную стоимость, и документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)");
         PageObjectUpd.fillSchfMinimum("АВТО СЧФДОП 2000/", 1);
         PageObjectUpd.podpisant();
@@ -94,9 +94,9 @@ public class Mailing {
         PageObjectMain.sendingDoc();
     }
 
-    @Test(enabled = false)
+    @Test(groups = {"MinFill"}, enabled = false)
     public void createDisMin() {
-        PageObjectMain.newFormOpen("УПД");
+        PageObjectMain.newFormOpen("Счет-фактура и\\или документ об отгрузке товаров (выполнении работ)");
         PageObjectUpd.chooseFunction("документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)");
         PageObjectUpd.fillSchfMinimum("АВТО ДИС 3000/", 1);
         PageObjectUpd.podpisant();
@@ -104,9 +104,9 @@ public class Mailing {
         //PageObjectMain.savingDoc();
         PageObjectMain.sendingDoc();
     }
-    @Test(enabled = false)
+    @Test(groups = {"FullFill"}, enabled = false)
     public void createDisMax(){
-        PageObjectMain.newFormOpen("УПД");
+        PageObjectMain.newFormOpen("Счет-фактура и\\или документ об отгрузке товаров (выполнении работ)");
         PageObjectUpd.chooseFunction("документ об отгрузке товаров (выполнении работ), передаче имущественных прав (документ об оказании услуг)");
         PageObjectUpd.fillSchfMinimum("АВТО ДИС 3000/", 1);
         PageObjectUpd.podpisant();

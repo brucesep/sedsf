@@ -1,0 +1,20 @@
+<suite name="Suite1" verbose="1" >
+
+    <test name="minimal fill">
+
+        <groups>
+            <run>
+                <include name = "littleone"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Mailing"/>
+            <class name="pageObj.helpMeth"/>
+            <class name="pageObj.PageObjectMain"/>
+            <class name="pageObj.PageObjectUpd"/>
+        </classes>
+
+    </test>
+
+</suite>

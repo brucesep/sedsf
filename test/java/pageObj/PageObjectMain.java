@@ -34,36 +34,42 @@ public class PageObjectMain {
     static SelenideElement outBox = $(new Selectors.ByText("Отправленные"));
 
 
-    public static void utochSend(String docNn){
+    public static void utochSend(String docN){
         outBox.click();
         $$(reloadList).get(0).click();
-        docuList.find(byText(docNn)).click();
+        docuList.find(byText(docN)).click();
         quitationCheck(4,3);
-        docuList.find(byText(docNn)).closest("tr").find(byText("Отправить извещение о получении")).click();
-        $(new Selectors.ByText("Подписать и отправить...")).click();
+        docuList.find(byText(docN)).closest("tr").find(byText("Отправить извещение о получении")).click();
+        $$(new Selectors.ByText("Подписать и отправить...")).last().click();
+        $(new Selectors.ByText("Отмена")).waitUntil(Condition.enabled, 2000).click();
+        docuList.find(byText(docN)).closest("tr").find(byText("Отправить извещение о получении")).click();
+        $$(new Selectors.ByText("Подписать и отправить...")).last().click();
         $(new Selectors.ByText("Отмена")).waitUntil(Condition.disappear, 15000);
         $$(reloadList).get(0).click();
-        docuList.find(byText(docNn)).click();
+        docuList.find(byText(docN)).click();
         quitationCheck(5, 4);
-        docuList.find(byText(docNn)).closest("tr").find(byText("Сформировать уточнение")).click();
+        docuList.find(byText(docN)).closest("tr").find(byText("Сформировать уточнение")).click();
         String nameOfDoc = $$(".vb-br span").get(0).getText();
-        Assert.assertEquals(docNn, nameOfDoc);
+        Assert.assertEquals(docN, nameOfDoc);
     }
 
-    public static void utochZ(String docNn) {
+    public static void utochZ(String docN) {
+        $(new Selectors.ByText(docN)).waitUntil(Condition.visible, 10000).click();
         $$(reloadList).get(1).click();
-        $(new Selectors.ByText(docNn)).closest("tr").find(byText("Запросить уточнение")).click();
+        $(new Selectors.ByText(docN)).click();
+        $(new Selectors.ByText(docN)).closest("tr").find(byText("Запросить уточнение")).click();
         $(By.name("msg")).setValue("АВТО уточнение запрошено");
         $$(new Selectors.ByText("Подписать и Отправить")).last().click();
+        $(new Selectors.ByText(docN)).closest("tr").find(byText("На уточнении")).waitUntil(Condition.visible, 4000);
         $$(reloadList).get(1).click();
-        $(new Selectors.ByText(docNn)).click();
+        $(new Selectors.ByText(docN)).click();
         quittionChekInbox(6, 5);
     }
 
-    public static void lastQuit(String doccNN) {
+    public static void lastQuit(String docN) {
         outBox.click();
         $$(reloadList).get(0).click();
-        docuList.find(byText(doccNN)).click();
+        docuList.find(byText(docN)).click();
         quitationCheck(3, 2);
     }
 
@@ -101,23 +107,23 @@ public class PageObjectMain {
         }
     }
 
-    public static void sendQvitSchf(String mainLink) {
+    public static void sendQvitSchf(String docN) {
         $$(reloadList).get(0).click();
         //слегка перепишем под универсальный запуск, ибо по удаленке - не срабатывает
-        docuList.find(byText(mainLink)).click();
-        //$(new Selectors.ByText(mainLink)).click();
+        docuList.find(byText(docN)).click();
+        //$(new Selectors.ByText(docN)).click();
         quitationCheck(1, 0);
         $$(reloadList).get(0).click();
-        docuList.find(byText(mainLink)).closest("tr").find(byText("Отправить извещение о получении")).click();
-        //$(new Selectors.ByText(mainLink)).closest("tr").find(byText("Отправить извещение о получении")).click();
+        docuList.find(byText(docN)).closest("tr").find(byText("Отправить извещение о получении")).click();
+        //$(new Selectors.ByText(docN)).closest("tr").find(byText("Отправить извещение о получении")).click();
         $(new Selectors.ByText("Отмена")).waitUntil(Condition.enabled, 2000).click();
-        docuList.find(byText(mainLink)).closest("tr").find(byText("Отправить извещение о получении")).click();
-        //$(new Selectors.ByText(mainLink)).closest("tr").find(byText("Отправить извещение о получении")).click();
+        docuList.find(byText(docN)).closest("tr").find(byText("Отправить извещение о получении")).click();
+        //$(new Selectors.ByText(docN)).closest("tr").find(byText("Отправить извещение о получении")).click();
         $(new Selectors.ByText("Подписать и отправить...")).click();
         $(new Selectors.ByText("Отмена")).waitUntil(Condition.disappear, 15000);
         $$(reloadList).get(0).click();
-        docuList.find(byText(mainLink)).click();
-        //$(new Selectors.ByText(mainLink)).click();
+        docuList.find(byText(docN)).click();
+        //$(new Selectors.ByText(docN)).click();
         quitationCheck(2, 1);
     }
 
